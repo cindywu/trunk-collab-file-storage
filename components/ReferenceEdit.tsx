@@ -211,10 +211,7 @@ export default function ReferenceEdit() {
             Archive
           </button>
         </div>
-        
-      </div>
-      
-      
+      </div>  
     </div>
   )
 }

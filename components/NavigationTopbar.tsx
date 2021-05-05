@@ -3,7 +3,7 @@ import styles from '../styles/navigation-topbar.module.css'
 import { useReferences } from './ReferenceProvider'
 
 export default function NavigationTopbar() {
-  const { handleReferenceAdd } = useReferences()
+  const { handleShowReferenceAdd } = useReferences()
 
   return (
     <div className={styles.container}>
@@ -14,7 +14,7 @@ export default function NavigationTopbar() {
       </button> */}
       <button 
         className="btn btn--add-reference" 
-        onClick={handleReferenceAdd}
+        onClick={handleShowReferenceAdd}
       >+</button>
     </div>
   )
