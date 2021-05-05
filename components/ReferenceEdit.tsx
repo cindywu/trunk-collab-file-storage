@@ -18,7 +18,7 @@ export default function ReferenceEdit() {
     return null
   }
 
-  function handleChange(changes: any){
+  function handleChange(changes: object){
     selectedReference && handleReferenceChange(selectedReference.id, { ...selectedReference, ...changes })
   }
 

@@ -15,7 +15,7 @@ export default function ReferenceCommentEdit(props : Props) {
     handleCommentDelete
   } = props
 
-  function handleChange(changes: any) {
+  function handleChange(changes: object) {
     handleCommentChange(comment.id, { ...comment, ...changes})
   }
 
