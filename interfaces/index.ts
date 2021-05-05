@@ -4,8 +4,8 @@ export type IReference = {
   parent: string
   date: string
   description: string
-  labels: Array<ILabel>
-  comments: Array<IComment>
+  labels: ILabel[]
+  comments: IComment[]
 }
 
 export type ILabel = {

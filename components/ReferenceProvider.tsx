@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { sampleReferenceData } from '../utils/sample-data'
 
 type ReferencesContextType = {
-  references: Array<IReference>
+  references: IReference[]
   selectedReference: IReference | undefined
   showReferenceAddModal: boolean
   handleReferenceAdd: () => void
@@ -34,7 +34,7 @@ type ReferenceProviderProps = {
 }
 
 export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
-  const [references, setReferences] = useState<Array<IReference>>(sampleReferenceData)
+  const [references, setReferences] = useState<IReference[]>(sampleReferenceData)
   const [showReferenceAddModal, setShowReferenceAddModal] = useState<boolean>(false)
   const [selectedReferenceId, setSelectedReferenceId] = useState<string | undefined>()
 
