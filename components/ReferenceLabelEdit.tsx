@@ -2,13 +2,13 @@ import React from 'react'
 import styles from '../styles/reference-edit.module.css'
 import type { ILabel } from '../interfaces'
 
-interface ReferenceLabelEditProps {
+type Props = {
   label: ILabel
   handleLabelChange: (id: string, label: ILabel) => void
   handleLabelDelete: (id: string) => void
 }
 
-export default function ReferenceLabelEdit(props : ReferenceLabelEditProps) {
+export default function ReferenceLabelEdit(props : Props) {
   const {
     label,
     handleLabelChange,

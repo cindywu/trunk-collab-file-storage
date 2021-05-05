@@ -1,12 +1,12 @@
 import '../styles/global.css'
 
-interface MyAppProps {
+interface Props {
   Component: any
   pageProps: any
 }
 
-function MyApp({ Component, pageProps } : MyAppProps) {
+function App({ Component, pageProps } : Props) {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+export default App

@@ -2,13 +2,13 @@ import React from 'react'
 import styles from '../styles/reference-edit.module.css'
 import { IComment } from '../interfaces'
 
-interface ReferenceCommentEditProps {
+type Props = {
   comment: IComment
   handleCommentChange: (id: string, comment: IComment) => void
   handleCommentDelete: (id: string) => void
 }
 
-export default function ReferenceCommentEdit(props : ReferenceCommentEditProps) {
+export default function ReferenceCommentEdit(props : Props) {
   const {
     comment,
     handleCommentChange,
