@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Reference from './Reference'
 import styles from '../styles/reference-list.module.css'
 import type { IReference } from '../interfaces'
