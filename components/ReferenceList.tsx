@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import Reference from './Reference'
 import styles from '../styles/reference-list.module.css'
 import type { IReference } from '../interfaces'
-import { ReferenceContext } from '../pages/workspace'
+import { useReferences } from './ReferenceProvider'
 
 export default function ReferenceList() {
-  const { references } = useContext(ReferenceContext)
-  
+  const { references } = useReferences()
+
   return (
     <div className={styles.container}>
       {references.map((reference: IReference) => {

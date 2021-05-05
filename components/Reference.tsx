@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styles from '../styles/reference.module.css'
 import LabelList from './LabelList'
 import type { IReference } from '../interfaces'
-import { ReferenceContext } from '../pages/workspace'
+import { useReferences } from './ReferenceProvider'
 
 export default function Reference(props : IReference) {
   const {
@@ -14,7 +14,7 @@ export default function Reference(props : IReference) {
     labels,
   } = props
 
-  const { handleReferenceArchive } = useContext(ReferenceContext)
+  const { handleReferenceArchive } = useReferences()
 
   return (
     <div className={styles.container}>

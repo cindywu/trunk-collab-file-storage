@@ -6,7 +6,6 @@ interface MyAppProps {
 }
 
 function MyApp({ Component, pageProps } : MyAppProps) {
-
   return <Component {...pageProps} />
 }
 

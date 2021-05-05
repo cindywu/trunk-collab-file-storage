@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from '../styles/layout.module.css'
 
-interface LayoutProps {
-  children: any
+type LayoutProps = {
+  children: React.ReactNode
 }
 
 export default function Layout({ children } : LayoutProps) {

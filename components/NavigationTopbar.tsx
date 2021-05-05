@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import styles from '../styles/navigation-topbar.module.css'
-import { ReferenceContext } from '../pages/workspace'
+import { useReferences } from './ReferenceProvider'
 
 export default function NavigationTopbar() {
-  const { handleReferenceAdd } = useContext(ReferenceContext)
+  const { handleReferenceAdd } = useReferences()
 
   return (
     <div className={styles.container}>
