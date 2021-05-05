@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import styles from '../styles/reference-add.module.css'
 import { useReferences } from './ReferenceProvider'
 import { v4 as uuidv4 } from 'uuid'

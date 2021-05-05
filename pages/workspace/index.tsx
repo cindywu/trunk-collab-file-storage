@@ -2,10 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import ReferenceAdd from '../../components/ReferenceAdd'
-import NavigationSidebar from '../../components/NavigationSidebar'
-import NavigationTopbar from '../../components/NavigationTopbar'
-import ReferenceList from '../../components/ReferenceList'
-import ReferenceEdit from '../../components/ReferenceEdit'
+import NavigationWest from '../../components/NavigationWest'
+import NavigationNorth from '../../components/NavigationNorth'
+import NavigationSouth from '../../components/NavigationSouth'
+import NavigationEast from '../../components/NavigationEast'
 import styles from '../../styles/workspace.module.css'
 
 export default function Workspace() {
@@ -16,12 +16,14 @@ export default function Workspace() {
       </Head>
       <ReferenceAdd />
       <div className={styles.container}>
-        <NavigationSidebar />
+        <NavigationWest />
         <div className={styles.center}>
-          <NavigationTopbar />
-          <ReferenceList />
+          <NavigationNorth />
+          <NavigationSouth />
+          
         </div>  
-        <ReferenceEdit />      
+        <NavigationEast />
+     
       </div>
     </Layout>
   )
