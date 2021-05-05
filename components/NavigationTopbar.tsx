@@ -7,11 +7,11 @@ export default function NavigationTopbar() {
 
   return (
     <div className={styles.container}>
-      <button 
+      {/* <button 
         className='btn btn--secondary reference-list__go-back'
       >
         Go back
-      </button>
+      </button> */}
       <button 
         className="btn btn--add-reference" 
         onClick={handleReferenceAdd}

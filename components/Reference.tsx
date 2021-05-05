@@ -14,10 +14,13 @@ export default function Reference(props : IReference) {
     labels,
   } = props
 
-  const { handleReferenceArchive } = useReferences()
+  const { handleReferenceSelect } = useReferences()
 
   return (
-    <div className={styles.container}>
+    <div 
+      className={styles.container}
+      onClick={() => handleReferenceSelect(id)}
+    >
       <div>
         <span className={styles.identifier}>{name}</span>
         <span className={styles.parent}>{` › `}</span>
@@ -30,7 +33,6 @@ export default function Reference(props : IReference) {
         </span>
         <span className={`${styles.createdAt} mr-1`}>{date}</span>
         <span className={styles.assignee}></span>
-        <span onClick={() => handleReferenceArchive(id)}>Delete</span>
       </div>
     </div>
   )

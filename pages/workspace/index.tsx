@@ -6,11 +6,8 @@ import ReferenceAdd from '../../components/ReferenceAdd'
 import NavigationSidebar from '../../components/NavigationSidebar'
 import NavigationTopbar from '../../components/NavigationTopbar'
 import ReferenceList from '../../components/ReferenceList'
-
+import ReferenceEdit from '../../components/ReferenceEdit'
 import styles from '../../styles/workspace.module.css'
-import { v4 as uuidv4 } from 'uuid'
-import type { IReference } from '../../interfaces'
-
 
 export default function Workspace() {
   return (
@@ -25,7 +22,8 @@ export default function Workspace() {
           <div className={styles.center}>
             <NavigationTopbar />
             <ReferenceList />
-          </div>        
+          </div>  
+          <ReferenceEdit />      
         </div>
       </ReferenceProvider>
     </Layout>

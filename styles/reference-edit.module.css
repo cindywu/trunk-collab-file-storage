@@ -1,0 +1,60 @@
+.container {
+  padding: 30px;
+  padding-top: 51px;
+  position: fixed;
+  right: 0;
+  top: 50;
+  width: 25%;
+  overflow-y: auto;
+  background-color: hsl(0, 0%, 87%);
+  color: hsl(0, 0%, 50%);
+  height: 100vh;
+}
+
+.navigationButtonContainer {
+  text-align: end;
+  padding-bottom: 1em;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 12px;
+  column-gap: 12px;
+  background-color: inherit;
+}
+
+.label {
+  background-color: inherit;
+}
+
+.input {
+  border: none;
+  border-radius: 3px;
+  font-size: inherit;
+  padding: 5px 10px;
+  outline: none;
+  width: 100%;
+  background-color: hsl(0, 0%, 96%);
+}
+
+textarea.input {
+  resize: none;
+  height: 100px;
+  background-color: hsl(0, 0%, 96%);
+}
+
+.labelGrid, .commentGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, auto);
+  margin-top: 20px;
+  background-color: inherit;
+}
+
+.buttonContainer {
+  margin-top: 20px;
+  text-align: center;
+  background-color: inherit;
+}
+
