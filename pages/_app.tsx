@@ -1,12 +1,15 @@
+import React from 'react'
+import { ReferenceProvider } from '../components/ReferenceProvider'
 import '../styles/global.css'
 
 interface Props {
-  Component: any
-  pageProps: any
+  Component: React.ComponentClass
 }
 
-function App({ Component, pageProps } : Props) {
-  return <Component {...pageProps} />
+export default function App({ Component } : Props) {
+  return (
+    <ReferenceProvider>
+      <Component />
+    </ReferenceProvider>
+  )
 }
-
-export default App
