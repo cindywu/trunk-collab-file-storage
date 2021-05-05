@@ -1,0 +1,12 @@
+.container {
+  border-right: 1px solid hsl(0, 0%, 87%);
+  min-height: 100vh;
+  width: 16.66%;
+  text-align: center;
+  padding-top: 95vh;
+  color: white;
+}
+
+.container:hover {
+  color: black;
+}

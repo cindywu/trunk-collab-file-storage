@@ -1,0 +1,6 @@
+.container {
+  padding: 12px;
+  text-align: right;
+  border-bottom: 1px solid hsl(0, 0%, 87%);
+  height: 52px;
+}

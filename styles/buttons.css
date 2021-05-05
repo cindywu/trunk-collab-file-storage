@@ -1,0 +1,29 @@
+.btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: hsl(0, 0%, 67%);
+}
+
+.btn--add-reference {
+  color: white;
+  background-color: hsl(0, 0%, 77%);
+  padding: 5px 10px 8px 10px;
+}
+
+.btn--primary {
+  color: white;
+  background-color: hsl(0, 0%, 77%);
+}
+
+.btn--primary:hover {
+  background-color: hsl(0, 0%, 67%);
+}
+
+.btn--add-reference:hover {
+  background-color: hsl(0, 0%, 67%);
+}
