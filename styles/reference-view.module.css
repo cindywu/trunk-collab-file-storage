@@ -1,0 +1,30 @@
+.container {
+  flex-grow: 1;
+  overflow: auto;
+  height: 94vh;
+  padding: 3em 6em;
+}
+
+.name {
+  font-size: 2.8em;
+  font-weight: 500;
+  margin-bottom: 1em;
+  color: hsl(0, 0%, 33%);
+}
+
+.description {
+  margin: 3em 0;
+  font-size: 1.2em;
+  font-weight: 300;
+  color: hsl(0, 0%, 33%);
+}
+
+.buttonContainer {
+  margin: 1em 0;
+  border-bottom: 1px solid hsl(0, 0%, 87%);
+}
+
+.subReferenceButton {
+  margin: 1em 0;
+  color: hsl(0, 0%, 33%);
+}

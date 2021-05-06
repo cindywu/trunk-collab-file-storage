@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline {
+  padding: 2em 2em 2em 0;
+}
+
+.comment {
+  width: 100%;
+  padding: 1em 2em;
+  border: 1px solid hsl(0, 13%, 90%);
+  margin: 1em 0;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userAvatar {
+  content: "";
+  display: inline-block;
+  background-color: hsl(0, 0%, 80%);
+  padding: .8em;
+  border-radius: 3px;
+}
+
+.form {
+  width: 100%;
+}
+
+.textArea {
+  padding: 1em 0;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: hsl(0, 0%, 30%);
+  width: 100%;
+  height: 100%;
+  resize: none;
+  background: none;
+}
+
+.textArea:focus {
+  outline: none;
+}
+
+.submitButtonContainer {
+  padding-top: 1em;
+}
+
+.submitButton {
+  position: relative;
+  float: right;
+}

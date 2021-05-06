@@ -12,7 +12,8 @@ export default function ReferenceEdit() {
     handleReferenceArchive,
     handleReferenceDeselect,
     handleReferenceChange,
-    handleReferenceExpandChange
+    handleReferenceExpandChange,
+    expandSelectedReference
   } = useReferences()
 
   if (selectedReference === undefined) {
@@ -76,12 +77,14 @@ export default function ReferenceEdit() {
     selectedReference &&
     <div className={styles.container}>
       <div className={styles.navigationButtonContainer}>
-        <button
-          className="btn btn--secondary"
-          onClick={handleReferenceExpandChange}
-        >
-          Expand
-        </button>
+        {!expandSelectedReference &&
+          <button
+            className="btn btn--secondary"
+            onClick={handleReferenceExpandChange}
+          >
+            Expand
+          </button>
+        }
         <button
           className="btn btn--secondary"
           onClick={handleReferenceDeselect}

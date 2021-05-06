@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline {
+  padding: 2em 2em 2em 0;
+}
+
+.comment {
+  width: 100%;
+  padding: 1em 2em;
+  border: 1px solid hsl(0, 13%, 90%);
+  margin: 1em 0;
+  border-radius: 3px;
+}
+
+.userAvatar {
+  content: "";
+  display: inline-block;
+  background-color: hsl(0, 0%, 80%);
+  padding: .8em;
+  border-radius: 3px;
+}
+
+.userInfo {
+  padding: 1em 0;
+}
+
+.user {
+  font-size: 1em;
+  font-weight: 500;
+  color: hsl(0, 0%, 60%);
+}
+
+.date {
+  color: hsl(0, 0%, 70%);
+}
+
+.content {
+  padding: 1em 0;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: hsl(0, 0%, 30%);
+}

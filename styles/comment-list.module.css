@@ -1,0 +1,10 @@
+.container {
+  margin: 0;
+}
+
+.heading {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: hsl(0, 0%, 70%);
+  margin: 2em 0;
+}
