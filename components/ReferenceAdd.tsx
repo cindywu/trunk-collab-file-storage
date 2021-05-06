@@ -36,7 +36,6 @@ export default function ReferenceAdd() {
         }
       ],
     }
-
     handleReferenceAdd(newReference)
   }
 

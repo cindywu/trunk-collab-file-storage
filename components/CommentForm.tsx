@@ -1,11 +1,25 @@
-import React , { useRef } from 'react'
+import React , { useRef, useEffect } from 'react'
 import styles from '../styles/comment-form.module.css'
+import { useReferences } from './ReferenceProvider'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function CommentForm() {
   const contentRef = useRef<HTMLTextAreaElement>(null)
 
+  const { handleReferenceChange, selectedReference } = useReferences()
+
+  function handleChange(changes: object) {
+    selectedReference && handleReferenceChange(selectedReference.id, { ...selectedReference, ...changes })
+  }
+
   function handleCommentAdd() {
-    console.log('hello')
+    const newComment = {
+      id: uuidv4(),
+      user: 'cindy',
+      content: contentRef.current && contentRef.current.value, 
+    }
+    selectedReference && handleChange({ comments: [...selectedReference.comments, newComment]})
+    contentRef.current && (contentRef.current.value = '')
   }
 
   return (
