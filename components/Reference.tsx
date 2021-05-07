@@ -14,12 +14,22 @@ export default function Reference(props : IReference) {
     labels,
   } = props
 
-  const { handleReferenceSelect } = useReferences()
+  const { 
+    handleReferenceSelect,
+    handleReferenceExpandChange,
+    selectedReference
+  } = useReferences()
+
+  function handleReferenceClick() {
+    selectedReference && selectedReference.id === id 
+    ? handleReferenceExpandChange()
+    : handleReferenceSelect(id)
+  }
 
   return (
     <div 
       className={styles.container}
-      onClick={() => handleReferenceSelect(id)}
+      onClick={() => handleReferenceClick()}
     >
       <div>
         <span className={styles.identifier}>{name}</span>
