@@ -21,14 +21,14 @@ export default function ReferenceLabelEdit(props : Props) {
 
   return (
     <>
-      <input 
+      <input
         className={styles.input}
         type="text"
         autoComplete="none"
         onChange={(e) => handleChange({ name: e.target.value })}
         value={label.name}
       />
-      <input 
+      <input
         className={styles.input}
         type="text"
         autoComplete="none"

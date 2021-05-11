@@ -1,7 +1,7 @@
 import React from 'react'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
-import { useReferences } from './ReferenceProvider' 
+import { useReferences } from './ReferenceProvider'
 import styles from '../styles/reference-view.module.css'
 
 export default function ReferenceView() {

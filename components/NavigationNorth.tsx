@@ -3,8 +3,8 @@ import styles from '../styles/navigation-north.module.css'
 import { useReferences } from './ReferenceProvider'
 
 export default function NavigationNorth() {
-  const { 
-    handleShowReferenceAdd, 
+  const {
+    handleShowReferenceAdd,
     expandSelectedReference,
     handleReferenceExpandChange
   } = useReferences()
@@ -16,16 +16,16 @@ export default function NavigationNorth() {
   return (
     <div className={styles.container}>
       {expandSelectedReference &&
-        <button 
+        <button
           className='btn btn--secondary reference-list__go-back'
           onClick={handleGoBack}
         >
           Go back
         </button>
       }
-      
-      <button 
-        className="btn btn--add-reference" 
+
+      <button
+        className="btn btn--add-reference"
         onClick={handleShowReferenceAdd}
       >+</button>
     </div>

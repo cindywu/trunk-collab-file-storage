@@ -11,8 +11,8 @@ export default function ReferenceList() {
     <div className={styles.container}>
       {references.map((reference: IReference) => {
         return (
-          <Reference 
-            key={reference.id} 
+          <Reference
+            key={reference.id}
             {...reference}
           />
         )

@@ -21,14 +21,14 @@ export default function ReferenceCommentEdit(props : Props) {
 
   return (
     <>
-      <input 
+      <input
         className={styles.input}
         type="text"
         autoComplete="none"
         onChange={(e) => handleChange({ name: e.target.value })}
         value={comment.user}
       />
-      <input 
+      <input
         className={styles.input}
         type="text"
         autoComplete="none"

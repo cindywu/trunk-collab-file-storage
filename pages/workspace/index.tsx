@@ -20,10 +20,8 @@ export default function Workspace() {
         <div className={styles.center}>
           <NavigationNorth />
           <NavigationSouth />
-          
-        </div>  
+        </div>
         <NavigationEast />
-     
       </div>
     </Layout>
   )

@@ -4,7 +4,7 @@ import ReferenceEdit from './ReferenceEdit'
 export default function NavigationEast() {
   return (
     <div>
-      <ReferenceEdit /> 
+      <ReferenceEdit />
     </div>
   )
 }

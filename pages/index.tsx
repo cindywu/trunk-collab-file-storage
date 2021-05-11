@@ -30,7 +30,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Produced by Jelly Public Benefit Corporation 
+          Produced by Jelly Public Benefit Corporation
         </a>
       </footer>
     </div>

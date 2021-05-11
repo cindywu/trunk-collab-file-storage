@@ -1,15 +1,15 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import styles from '../styles/reference-add.module.css'
 import { useReferences } from './ReferenceProvider'
 import { v4 as uuidv4 } from 'uuid'
 
 export default function ReferenceAdd() {
-  const { 
+  const {
     showReferenceAdd,
     handleReferenceAdd,
     handleShowReferenceAdd
   } = useReferences()
-  
+
   const nameRef = useRef<HTMLInputElement>(null)
   const parentRef = useRef<HTMLInputElement>(null)
   const titleRef = useRef<HTMLTextAreaElement>(null)
@@ -49,7 +49,7 @@ export default function ReferenceAdd() {
           </div>
           <div className={styles.buttonContainer}>
             <button className="btn btn--secondary">Expand</button>
-            <button 
+            <button
               className="btn btn--secondary"
               onClick={handleShowReferenceAdd}
             >&times;</button>
@@ -75,8 +75,8 @@ export default function ReferenceAdd() {
             ref={parentRef}
           />
           <textarea
-            name="description" 
-            id="description" 
+            name="description"
+            id="description"
             className={styles.input}
             placeholder="title"
             ref={titleRef}
@@ -89,7 +89,7 @@ export default function ReferenceAdd() {
             </button>
           </div>
           <div className={styles.right}>
-            <button 
+            <button
               className="btn btn--primary"
               onClick={handleSaveReference}
             >
@@ -97,7 +97,7 @@ export default function ReferenceAdd() {
             </button>
           </div>
         </div>
-        </div> 
+        </div>
       }
     </>
   )

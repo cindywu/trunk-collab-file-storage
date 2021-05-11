@@ -1,4 +1,4 @@
-import React , { useRef, useEffect } from 'react'
+import React , { useRef } from 'react'
 import styles from '../styles/comment-form.module.css'
 import { useReferences } from './ReferenceProvider'
 import { v4 as uuidv4 } from 'uuid'
@@ -16,7 +16,7 @@ export default function CommentForm() {
     const newComment = {
       id: uuidv4(),
       user: 'cindy',
-      content: contentRef.current && contentRef.current.value, 
+      content: contentRef.current && contentRef.current.value,
     }
     selectedReference && handleChange({ comments: [...selectedReference.comments, newComment]})
     contentRef.current && (contentRef.current.value = '')
@@ -28,8 +28,8 @@ export default function CommentForm() {
         <div className={styles.userAvatar}></div>
       </div>
       <div className={styles.comment}>
-        <form 
-          className={styles.form} 
+        <form
+          className={styles.form}
         >
           <textarea
             className={styles.textArea}
@@ -39,7 +39,7 @@ export default function CommentForm() {
           />
         </form>
         <div className={styles.submitButtonContainer}>
-          <button 
+          <button
             className={` ${styles.submitButton} btn btn--primary`}
             onClick={handleCommentAdd}
           >

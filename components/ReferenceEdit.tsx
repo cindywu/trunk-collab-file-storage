@@ -7,8 +7,8 @@ import { ILabel, IComment } from '../interfaces'
 import { v4 as uuidv4 } from 'uuid'
 
 export default function ReferenceEdit() {
-  const { 
-    selectedReference, 
+  const {
+    selectedReference,
     handleReferenceArchive,
     handleReferenceDeselect,
     handleReferenceChange,
@@ -55,7 +55,7 @@ export default function ReferenceEdit() {
       newComments[index] = comment
       handleChange({ comments: newComments })
     }
-    
+
   }
 
   const handleCommentAdd = () => {
@@ -113,35 +113,35 @@ export default function ReferenceEdit() {
         >
           Parent
         </label>
-        <input 
-          type="text" 
-          name="parent" 
-          id="parent" 
+        <input
+          type="text"
+          name="parent"
+          id="parent"
           autoComplete="off"
           value={selectedReference.parent}
           onChange={e => handleChange({ parent: e.target.value })}
           className={styles.input} />
-        <label 
+        <label
           htmlFor="date"
           className={styles.label}>
           Date
         </label>
-        <input 
-          type="text" 
-          name="date" 
-          id="date" 
+        <input
+          type="text"
+          name="date"
+          id="date"
           autoComplete="off"
           value={selectedReference.date}
           onChange={e => handleChange({ date: e.target.value })}
           className={styles.input} />
-        <label 
+        <label
           htmlFor="description"
           className={styles.label}>
           Description
         </label>
-        <textarea 
-          name="description" 
-          id="description" 
+        <textarea
+          name="description"
+          id="description"
           onChange={e => handleChange({ description: e.target.value })}
           value={selectedReference.description}
           className={styles.input} />
@@ -195,7 +195,7 @@ export default function ReferenceEdit() {
               comment={comment}
             />
           ))}
-          
+
         </div>
         <div className={styles.buttonContainer}>
           <button
@@ -215,7 +215,7 @@ export default function ReferenceEdit() {
             Archive
           </button>
         </div>
-      </div>  
+      </div>
     </div>
   )
 }

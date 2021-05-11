@@ -14,24 +14,24 @@ export default function Reference(props : IReference) {
     labels,
   } = props
 
-  const { 
+  const {
     handleReferenceSelect,
     handleReferenceExpandChange,
     selectedReference
   } = useReferences()
 
   function handleReferenceClick() {
-    selectedReference && selectedReference.id === id 
+    selectedReference && selectedReference.id === id
     ? handleReferenceExpandChange()
     : handleReferenceSelect(id)
   }
 
   const emphasisStyle = {
     backgroundColor: 'hsl(210, 8%, 93%)'
-  } as React.CSSProperties 
+  } as React.CSSProperties
 
   return (
-    <div 
+    <div
       className={styles.container}
       onClick={() => handleReferenceClick()}
       style={(selectedReference && selectedReference.id === id) ? emphasisStyle : undefined }

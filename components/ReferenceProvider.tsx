@@ -102,7 +102,7 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
   }
 
   return (
-    <ReferencesContext.Provider 
+    <ReferencesContext.Provider
       value={referencesContextValue}
     >
       {children}
