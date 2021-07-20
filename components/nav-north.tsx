@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../styles/navigation-north.module.css'
-import { useReferences } from './ReferenceProvider'
+import styles from './nav-north.module.css'
+import { useReferences } from './reference-provider'
 
-export default function NavigationNorth() {
+export default function NavNorth() {
   const {
     handleShowReferenceAdd,
     expandSelectedReference,

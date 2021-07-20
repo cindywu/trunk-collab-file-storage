@@ -1,9 +1,9 @@
 import React from 'react'
-import ReferenceList from './ReferenceList'
-import ReferenceView from './ReferenceView'
-import { useReferences } from './ReferenceProvider'
+import ReferenceList from './reference-list'
+import ReferenceView from './reference-view'
+import { useReferences } from './reference-provider'
 
-export default function NavigationSouth() {
+export default function NavSouth() {
   const { selectedReference, expandSelectedReference } = useReferences()
   return (
     <>

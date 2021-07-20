@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import styles from '../styles/reference-add.module.css'
-import { useReferences } from './ReferenceProvider'
+import styles from './reference-add.module.css'
+import { useReferences } from './reference-provider'
 import { v4 as uuidv4 } from 'uuid'
 
 export default function ReferenceAdd() {

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import styles from '../styles/reference.module.css'
-import LabelList from './LabelList'
+import styles from './reference.module.css'
+import LabelList from './label-list'
 import type { IReference } from '../interfaces'
-import { useReferences } from './ReferenceProvider'
+import { useReferences } from './reference-provider'
 
 export default function Reference(props : IReference) {
   const {

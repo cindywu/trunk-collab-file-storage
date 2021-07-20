@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../styles/reference-edit.module.css'
-import ReferenceLabelEdit from './ReferenceLabelEdit'
-import ReferenceCommentEdit from './ReferenceCommentEdit'
-import { useReferences } from './ReferenceProvider'
+import styles from './reference-edit.module.css'
+import ReferenceLabelEdit from './reference-label-edit'
+import ReferenceCommentEdit from './reference-comment-edit'
+import { useReferences } from './reference-provider'
 import { ILabel, IComment } from '../interfaces'
 import { v4 as uuidv4 } from 'uuid'
 

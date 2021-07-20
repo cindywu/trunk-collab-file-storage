@@ -1,5 +1,5 @@
 import React from 'react'
-import Label from './Label'
+import Label from './label'
 import type { ILabel } from '../interfaces'
 
 type Props = {

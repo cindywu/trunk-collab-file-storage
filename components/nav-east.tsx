@@ -1,7 +1,7 @@
 import React from 'react'
-import ReferenceEdit from './ReferenceEdit'
+import ReferenceEdit from './reference-edit'
 
-export default function NavigationEast() {
+export default function NavEast() {
   return (
     <div>
       <ReferenceEdit />

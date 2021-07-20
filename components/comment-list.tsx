@@ -1,8 +1,8 @@
 import React from 'react'
-import Comment from './Comment'
+import Comment from './comment'
 import { IComment } from '../interfaces'
-import { useReferences } from './ReferenceProvider'
-import styles from '../styles/comment-list.module.css'
+import { useReferences } from './reference-provider'
+import styles from './comment-list.module.css'
 
 export default function CommentList() {
   const { selectedReference } = useReferences()

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/reference-edit.module.css'
+import styles from './reference-edit.module.css'
 import type { ILabel } from '../interfaces'
 
 type Props = {

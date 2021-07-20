@@ -1,8 +1,8 @@
 import React from 'react'
-import Reference from './Reference'
-import styles from '../styles/reference-list.module.css'
+import Reference from './reference'
+import styles from './reference-list.module.css'
 import type { IReference } from '../interfaces'
-import { useReferences } from './ReferenceProvider'
+import { useReferences } from './reference-provider'
 
 export default function ReferenceList() {
   const { references } = useReferences()

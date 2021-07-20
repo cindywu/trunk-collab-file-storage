@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/label.module.css'
+import styles from './label.module.css'
 import type { ILabel } from '../interfaces'
 
 export default function Label(props : ILabel) {

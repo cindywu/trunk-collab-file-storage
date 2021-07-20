@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import styles from '../styles/navigation-west.module.css'
+import styles from './nav-west.module.css'
 
-export default function NavigationWest() {
+export default function NavWest() {
   return (
     <div className={styles.container}>
       <Link href="/">

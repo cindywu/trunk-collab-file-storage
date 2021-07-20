@@ -1,8 +1,8 @@
 import React from 'react'
-import CommentList from './CommentList'
-import CommentForm from './CommentForm'
-import { useReferences } from './ReferenceProvider'
-import styles from '../styles/reference-view.module.css'
+import CommentList from './comment-list'
+import CommentForm from './comment-form'
+import { useReferences } from './reference-provider'
+import styles from './reference-view.module.css'
 
 export default function ReferenceView() {
   const { selectedReference } = useReferences()

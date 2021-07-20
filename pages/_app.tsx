@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReferenceProvider } from '../components/ReferenceProvider'
+import { ReferenceProvider } from '../components/reference-provider'
 import '../styles/global.css'
 
 interface Props {
