@@ -2,20 +2,16 @@ import React from 'react'
 import Reference from './reference'
 import styles from './reference-list.module.css'
 import type { IReference } from '../interfaces'
-import { useReferences } from './reference-provider'
 
-export default function ReferenceList({ rep }: any ) {
-  const { references } = useReferences()
-
-  console.log('rep', rep)
-
+export default function ReferenceList({ references }: any ) {
   return (
     <div className={styles.container}>
-      {references.map((reference: IReference) => {
+      {references.map(([k, v] : any) => {
         return (
           <Reference
-            key={reference.id}
-            {...reference}
+            key={k}
+            value={v}
+            id={k}
           />
         )
       })}

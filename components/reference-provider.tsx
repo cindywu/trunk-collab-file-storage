@@ -1,6 +1,7 @@
 import React, { useState, createContext, useEffect, useContext, useRef } from 'react'
 import { IReference } from '../interfaces'
 import { sampleReferenceData } from '../utils/sample-data'
+import { useSubscribe } from 'replicache-react'
 
 type ReferencesContextType = {
   references: IReference[]
@@ -14,6 +15,8 @@ type ReferencesContextType = {
   handleReferenceChange: (id: string | undefined, reference: IReference) => void
   handleShowReferenceAdd: () => void
   handleReferenceExpandChange: () => void
+  handleSetRep: (rep: any) => void
+  handleSetSelectedReference: (reference: IReference) => void
 }
 
 const defaultContextValue = {
@@ -27,7 +30,9 @@ const defaultContextValue = {
   handleReferenceDeselect: () => {},
   handleReferenceChange: (id: string | undefined, reference: IReference) => {},
   handleShowReferenceAdd: () => {},
-  handleReferenceExpandChange: () => {}
+  handleReferenceExpandChange: () => {},
+  handleSetRep: (rep: any) => {},
+  handleSetSelectedReference: (reference: IReference) => {}
 }
 
 export const ReferencesContext = createContext<ReferencesContextType>(defaultContextValue)
@@ -43,17 +48,13 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
   const [showReferenceAdd, setShowReferenceAdd] = useState<boolean>(false)
   const [selectedReferenceId, setSelectedReferenceId] = useState<string | undefined>()
   const [expandSelectedReference, setExpandSelectedReference] = useState<boolean>(false)
+  const [rep, setRep] = useState<any>()
+  const [selectedReference, setSelectedReference] = useState<IReference>()
 
-  const selectedReference = references.find(reference => reference.id === selectedReferenceId)
+  function handleSetSelectedReference(reference: IReference){
+    setSelectedReference(reference)
+  }
 
-  useEffect(() => {
-    const referenceJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (referenceJSON != null) setReferences(JSON.parse(referenceJSON))
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(references))
-  }, [references])
 
   const referencesContextValue = {
     references,
@@ -66,7 +67,9 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
     handleReferenceDeselect,
     handleReferenceChange,
     handleShowReferenceAdd,
-    handleReferenceExpandChange
+    handleReferenceExpandChange,
+    handleSetRep,
+    handleSetSelectedReference
   }
 
   function handleReferenceSelect(id: string){
@@ -78,12 +81,17 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
   }
 
   function handleReferenceAdd(newReference: IReference) {
-    setReferences([...references, newReference])
-    showReferenceAdd && setShowReferenceAdd(!showReferenceAdd)
+    if (rep != undefined) {
+      rep.mutate.createReference(newReference)
+      showReferenceAdd && setShowReferenceAdd(!showReferenceAdd)
+    }
   }
 
   function handleReferenceArchive(id: string) {
-    setReferences(references.filter(reference => reference.id !== id))
+    if (rep != undefined) {
+      rep.mutate.deleteReference({id: id})
+    }
+    // setReferences(references.filter(reference => reference.id !== id))
   }
 
   function handleReferenceDeselect() {
@@ -99,6 +107,10 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
 
   function handleReferenceExpandChange() {
     setExpandSelectedReference(!expandSelectedReference)
+  }
+
+  function handleSetRep(rep: any) {
+    setRep(rep)
   }
 
   return (

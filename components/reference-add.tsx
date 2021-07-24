@@ -3,7 +3,7 @@ import styles from './reference-add.module.css'
 import { useReferences } from './reference-provider'
 import { v4 as uuidv4 } from 'uuid'
 
-export default function ReferenceAdd() {
+export default function ReferenceAdd({ rep }: any) {
   const {
     showReferenceAdd,
     handleReferenceAdd,

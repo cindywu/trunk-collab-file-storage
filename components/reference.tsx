@@ -4,15 +4,15 @@ import LabelList from './label-list'
 import type { IReference } from '../interfaces'
 import { useReferences } from './reference-provider'
 
-export default function Reference(props : IReference) {
-  const {
-    id,
-    name,
-    parent,
-    description,
-    date,
-    labels,
-  } = props
+
+interface ReferenceProps {
+  value:  IReference
+  id: string
+}
+
+export default function Reference(props : ReferenceProps ){
+  const { handleSetSelectedReference } = useReferences()
+  const reference : IReference = props.value
 
   const {
     handleReferenceSelect,
@@ -21,9 +21,20 @@ export default function Reference(props : IReference) {
   } = useReferences()
 
   function handleReferenceClick() {
-    selectedReference && selectedReference.id === id
+    const payload = {
+      id: props.id.substring(4),
+      name: reference.name,
+      parent: reference.parent,
+      date: reference.date,
+      description: reference.description,
+      labels: reference.labels,
+      comments: reference.comments
+    }
+    selectedReference && selectedReference.id === props.id.substring(4)
     ? handleReferenceExpandChange()
-    : handleReferenceSelect(id)
+    // : handleReferenceSelect(reference.id)
+    :
+    handleSetSelectedReference(payload)
   }
 
   const emphasisStyle = {
@@ -34,19 +45,19 @@ export default function Reference(props : IReference) {
     <div
       className={styles.container}
       onClick={() => handleReferenceClick()}
-      style={(selectedReference && selectedReference.id === id) ? emphasisStyle : undefined }
+      style={(selectedReference && selectedReference.id === props.id.substring(4)) ? emphasisStyle : undefined }
     >
       <div>
-        <span className={styles.identifier}>{name}</span>
+        <span className={styles.identifier}>{reference.name}</span>
         <span className={styles.parent}>{` › `}</span>
-        <span className={`${styles.parent} mr-1`}>{parent}</span>
-        <span className={styles.title}>{description}</span>
+        <span className={`${styles.parent} mr-1`}>{reference.parent}</span>
+        <span className={styles.title}>{reference.description}</span>
       </div>
       <div>
         <span className={`${styles.labels} mr-1`}>
-          <LabelList labels={labels} />
+          <LabelList labels={reference.labels} />
         </span>
-        <span className={`${styles.createdAt} mr-1`}>{date}</span>
+        <span className={`${styles.createdAt} mr-1`}>{reference.date}</span>
         <span className={styles.assignee}></span>
       </div>
     </div>

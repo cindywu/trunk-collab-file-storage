@@ -7,8 +7,8 @@ type Props = {
 }
 
 export default function LabelList({ labels } : Props) {
-  const labelElements = labels.map(label => {
-    return <Label key={label.id} {...label} />
+  const labelElements = labels.map((label, index) => {
+    return <Label key={index} {...label} />
   })
 
   return (

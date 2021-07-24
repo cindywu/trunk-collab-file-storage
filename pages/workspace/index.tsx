@@ -7,26 +7,55 @@ import NavNorth from '../../components/nav-north'
 import NavSouth from '../../components/nav-south'
 import NavEast from '../../components/nav-east'
 import styles from '../../styles/workspace.module.css'
+import { useReferences } from '../../components/reference-provider'
 
 import { Replicache } from 'replicache'
+import Pusher from 'pusher-js'
 
 export default function Workspace() {
   const [rep, setRep] = useState<any>(null)
+  const { handleSetRep } = useReferences()
 
   useEffect(() => {
     (async() => {
       const rep = new Replicache({
         pushURL: '/api/rep-push',
         pullURL: 'api/rep-pull',
-        wasmModule: '/replicache.dev.wasm'
+        wasmModule: '/replicache.dev.wasm',
+        mutators: {
+          async createReference(tx, {id, name, parent, date, description, labels, comments}) {
+            await tx.put(`ref/${id}`, {
+              name,
+              parent,
+              date,
+              description,
+              labels,
+              comments
+            })
+          },
+          async deleteReference(tx, {id}) {
+            await tx.del(`ref/${id}`)
+          }
+        },
       })
       listen(rep)
       setRep(rep)
+      handleSetRep(rep)
     })()
   }, [])
 
   function listen(rep: any){
-    console.log('i am in listen')
+    console.log('listening');
+    // Listen for pokes, and pull whenever we get one.
+    Pusher.logToConsole = true;
+    const pusher = new Pusher(process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_KEY!, {
+      cluster: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_CLUSTER,
+    });
+    const channel = pusher.subscribe('default');
+    channel.bind('poke', () => {
+      console.log('got poked');
+      rep.pull();
+    });
   }
 
   return (
@@ -39,7 +68,7 @@ export default function Workspace() {
         <NavWest />
         <div className={styles.center}>
           <NavNorth />
-          <NavSouth rep={rep}/>
+          {rep && <NavSouth rep={rep}/>}
         </div>
         <NavEast />
       </div>

@@ -160,12 +160,12 @@ export default function ReferenceEdit() {
             Color
           </div>
           <div></div>
-          {selectedReference.labels.map(label => (
+          {selectedReference.labels.map((label, index) => (
             <ReferenceLabelEdit
               handleLabelChange={handleLabelChange}
               handleLabelDelete={handleLabelDelete}
-              key={label.id}
               label={label}
+              key={index}
             />
           ))}
         </div>
