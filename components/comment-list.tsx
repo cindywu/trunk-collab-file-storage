@@ -4,8 +4,8 @@ import { IComment } from '../interfaces'
 import { useReferences } from './reference-provider'
 import styles from './comment-list.module.css'
 
-export default function CommentList() {
-  const { selectedReference } = useReferences()
+export default function CommentList({selectedReference}: any) {
+  // const { selectedReference } = useReferences()
 
   const { comments } = Object(selectedReference)
 

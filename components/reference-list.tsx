@@ -3,7 +3,7 @@ import Reference from './reference'
 import styles from './reference-list.module.css'
 import type { IReference } from '../interfaces'
 
-export default function ReferenceList({ references }: any ) {
+export default function ReferenceList({ references, selectedReference }: any ) {
   return (
     <div className={styles.container}>
       {references.map(([k, v] : any) => {
@@ -12,6 +12,7 @@ export default function ReferenceList({ references }: any ) {
             key={k}
             value={v}
             id={k}
+            selectedReference={selectedReference}
           />
         )
       })}

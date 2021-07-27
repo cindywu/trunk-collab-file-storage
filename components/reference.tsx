@@ -4,37 +4,29 @@ import LabelList from './label-list'
 import type { IReference } from '../interfaces'
 import { useReferences } from './reference-provider'
 
-
 interface ReferenceProps {
   value:  IReference
   id: string
+  selectedReference: any
 }
 
 export default function Reference(props : ReferenceProps ){
-  const { handleSetSelectedReference } = useReferences()
   const reference : IReference = props.value
+  const { selectedReference } = props
+
 
   const {
     handleReferenceSelect,
     handleReferenceExpandChange,
-    selectedReference
+    // selectedReference
   } = useReferences()
 
   function handleReferenceClick() {
-    const payload = {
-      id: props.id.substring(4),
-      name: reference.name,
-      parent: reference.parent,
-      date: reference.date,
-      description: reference.description,
-      labels: reference.labels,
-      comments: reference.comments
-    }
     selectedReference && selectedReference.id === props.id.substring(4)
     ? handleReferenceExpandChange()
     // : handleReferenceSelect(reference.id)
     :
-    handleSetSelectedReference(payload)
+    handleReferenceSelect(props.id.substring(4))
   }
 
   const emphasisStyle = {

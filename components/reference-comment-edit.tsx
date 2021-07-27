@@ -6,6 +6,7 @@ type Props = {
   comment: IComment
   handleCommentChange: (id: string, comment: IComment) => void
   handleCommentDelete: (id: string) => void
+  selectedReference: any
 }
 
 export default function ReferenceCommentEdit(props : Props) {

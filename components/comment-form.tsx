@@ -3,13 +3,13 @@ import styles from './comment-form.module.css'
 import { useReferences } from './reference-provider'
 import { v4 as uuidv4 } from 'uuid'
 
-export default function CommentForm() {
+export default function CommentForm({selectedReference} : any) {
   const contentRef = useRef<HTMLTextAreaElement>(null)
 
-  const { handleReferenceChange, selectedReference } = useReferences()
+  const { handleReferenceChange } = useReferences()
 
   function handleChange(changes: object) {
-    selectedReference && handleReferenceChange(selectedReference.id, { ...selectedReference, ...changes })
+    selectedReference && handleReferenceChange({ ...selectedReference, ...changes })
   }
 
   function handleCommentAdd() {

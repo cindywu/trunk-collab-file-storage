@@ -35,6 +35,16 @@ export default function Workspace() {
           },
           async deleteReference(tx, {id}) {
             await tx.del(`ref/${id}`)
+          },
+          async updateReference(tx, {id, name, parent, date, description, labels, comments}) {
+            await tx.put(`ref/${id}`, {
+              name,
+              parent,
+              date,
+              description,
+              labels,
+              comments
+            })
           }
         },
       })
@@ -68,9 +78,17 @@ export default function Workspace() {
         <NavWest />
         <div className={styles.center}>
           <NavNorth />
-          {rep && <NavSouth rep={rep}/>}
+          {rep &&
+            <NavSouth
+              rep={rep}
+            />
+          }
         </div>
-        <NavEast />
+        {rep &&
+          <NavEast
+            rep={rep}
+          />
+      }
       </div>
     </Layout>
   )

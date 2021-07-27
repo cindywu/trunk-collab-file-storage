@@ -6,14 +6,13 @@ import { useReferences } from './reference-provider'
 import { ILabel, IComment } from '../interfaces'
 import { v4 as uuidv4 } from 'uuid'
 
-export default function ReferenceEdit() {
+export default function ReferenceEdit({ selectedReference, setSelectedReference }: any) {
   const {
-    selectedReference,
     handleReferenceArchive,
     handleReferenceDeselect,
     handleReferenceChange,
     handleReferenceExpandChange,
-    expandSelectedReference
+    expandSelectedReference,
   } = useReferences()
 
   if (selectedReference === undefined) {
@@ -21,7 +20,9 @@ export default function ReferenceEdit() {
   }
 
   function handleChange(changes: object){
-    selectedReference && handleReferenceChange(selectedReference.id, { ...selectedReference, ...changes })
+    const payload = {...selectedReference, ...changes}
+    selectedReference && handleReferenceChange(payload)
+    setSelectedReference(payload)
   }
 
   function handleLabelChange(id: string, label: ILabel) {
@@ -44,7 +45,7 @@ export default function ReferenceEdit() {
 
   const handleLabelDelete = (id: string) => {
     handleChange({
-      labels: selectedReference.labels.filter((label) => label.id !== id)
+      labels: selectedReference.labels.filter((label: any) => label.id !== id)
     })
   }
 
@@ -69,7 +70,7 @@ export default function ReferenceEdit() {
 
   const handleCommentDelete = (id: string) => {
     handleChange({
-      comments: selectedReference.comments.filter((comment) => comment.id !== id)
+      comments: selectedReference.comments.filter((comment: any) => comment.id !== id)
     })
   }
 
@@ -160,14 +161,14 @@ export default function ReferenceEdit() {
             Color
           </div>
           <div></div>
-          {selectedReference.labels.map((label, index) => (
+          {/* {selectedReference.labels.map((label: any) => (
             <ReferenceLabelEdit
               handleLabelChange={handleLabelChange}
               handleLabelDelete={handleLabelDelete}
               label={label}
-              key={index}
+              key={label.id}
             />
-          ))}
+          ))} */}
         </div>
         <div className={styles.buttonContainer}>
           <button
@@ -187,14 +188,15 @@ export default function ReferenceEdit() {
           <div>User</div>
           <div>Content</div>
           <div></div>
-          {selectedReference.comments.map(comment => (
+          {/* {selectedReference.comments.map((comment: any) => (
             <ReferenceCommentEdit
+              key={comment.id}
               handleCommentChange={handleCommentChange}
               handleCommentDelete={handleCommentDelete}
-              key={comment.id}
+              selectedReference={selectedReference}
               comment={comment}
             />
-          ))}
+          ))} */}
 
         </div>
         <div className={styles.buttonContainer}>
