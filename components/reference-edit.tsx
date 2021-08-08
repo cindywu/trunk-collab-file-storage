@@ -37,8 +37,8 @@ export default function ReferenceEdit({ selectedReference, setSelectedReference 
   const handleLabelAdd = () =>  {
     const newLabel = {
       id: uuidv4(),
-      name: '',
-      color: '',
+      name: 'new label',
+      color: 'red',
     }
     handleChange({ labels: [...selectedReference.labels, newLabel]})
   }
@@ -161,14 +161,14 @@ export default function ReferenceEdit({ selectedReference, setSelectedReference 
             Color
           </div>
           <div></div>
-          {/* {selectedReference.labels.map((label: any) => (
+          {selectedReference.labels.map((label: any) => (
             <ReferenceLabelEdit
               handleLabelChange={handleLabelChange}
               handleLabelDelete={handleLabelDelete}
               label={label}
-              key={label.id}
+              key={JSON.parse(label).id}
             />
-          ))} */}
+          ))}
         </div>
         <div className={styles.buttonContainer}>
           <button

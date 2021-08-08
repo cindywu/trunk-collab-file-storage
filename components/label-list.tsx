@@ -1,14 +1,14 @@
 import React from 'react'
 import Label from './label'
-import type { ILabel } from '../interfaces'
 
 type Props = {
-  labels: ILabel[]
+  labels: any[]
 }
 
 export default function LabelList({ labels } : Props) {
   const labelElements = labels.map((label, index) => {
-    return <Label key={index} {...label} />
+    const obj = JSON.parse(label)
+    return <Label key={index} label={obj} />
   })
 
   return (
