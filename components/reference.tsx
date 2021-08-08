@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from './reference.module.css'
 import LabelList from './label-list'
 import type { IReference } from '../interfaces'
@@ -14,17 +14,14 @@ export default function Reference(props : ReferenceProps ){
   const reference : IReference = props.value
   const { selectedReference } = props
 
-
   const {
     handleReferenceSelect,
-    handleReferenceExpandChange,
-    // selectedReference
+    handleReferenceExpandChange
   } = useReferences()
 
   function handleReferenceClick() {
     selectedReference && selectedReference.id === props.id.substring(4)
     ? handleReferenceExpandChange()
-    // : handleReferenceSelect(reference.id)
     :
     handleReferenceSelect(props.id.substring(4))
   }

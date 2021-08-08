@@ -35,10 +35,14 @@ export default function NavSouth({ rep } : any) {
     <>
       { selectedReference && expandSelectedReference ?
         <ReferenceView
+          references={references}
           selectedReference={selectedReference}
         />
       :
-        <ReferenceList references={references} selectedReference={selectedReference}/>
+        <ReferenceList
+          references={references}
+          selectedReference={selectedReference}
+        />
       }
     </>
   )
