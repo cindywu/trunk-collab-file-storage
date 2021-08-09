@@ -6,9 +6,15 @@ type Props = {
 }
 
 export default function LabelList({ labels } : Props) {
-  const labelElements = labels.map((label, index) => {
-    const obj = JSON.parse(label)
-    return <Label key={index} label={obj} />
+  const labelElements = labels.map((label) => {
+    let obj
+
+    typeof(label) === 'object' ?
+      obj = label
+      :
+      obj = JSON.parse(label)
+
+    return <Label key={obj.id} label={obj} />
   })
 
   return (
