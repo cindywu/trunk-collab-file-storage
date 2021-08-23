@@ -188,15 +188,15 @@ export default function ReferenceEdit({ selectedReference, setSelectedReference 
           <div>User</div>
           <div>Content</div>
           <div></div>
-          {/* {selectedReference.comments.map((comment: any) => (
+          {selectedReference.comments.map((comment: any) => (
             <ReferenceCommentEdit
-              key={comment.id}
+              key={JSON.parse(comment).id}
               handleCommentChange={handleCommentChange}
               handleCommentDelete={handleCommentDelete}
               selectedReference={selectedReference}
               comment={comment}
             />
-          ))} */}
+          ))}
 
         </div>
         <div className={styles.buttonContainer}>
