@@ -32,7 +32,7 @@ export default function NavEast({rep} : any) {
 
   return (
     <>
-      { selectedReference &&
+      { selectedReferenceId &&
         <ReferenceEdit
           selectedReference={selectedReference}
           setSelectedReference={setSelectedReference}

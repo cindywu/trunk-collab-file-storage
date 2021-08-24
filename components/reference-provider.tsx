@@ -80,6 +80,7 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
 
   function handleReferenceDeselect() {
     setSelectedReferenceId(undefined)
+    expandSelectedReference && setExpandSelectedReference(!expandSelectedReference)
   }
 
   function handleReferenceChange(reference: IReference) {
