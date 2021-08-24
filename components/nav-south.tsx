@@ -19,7 +19,7 @@ export default function NavSouth({ rep } : any) {
 
   useEffect(() => {
     findSelectedReference()
-  }, [selectedReferenceId])
+  }, [selectedReferenceId, references])
 
   function findSelectedReference(){
     references.map(([k, v]) => {
