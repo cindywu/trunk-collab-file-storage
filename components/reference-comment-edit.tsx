@@ -16,7 +16,7 @@ export default function ReferenceCommentEdit(props : Props) {
     handleCommentDelete
   } = props
 
-  let obj
+  let obj: { user: string; content: string; id: string }
 
   typeof(comment) === 'object' ?
     obj = comment
@@ -45,7 +45,7 @@ export default function ReferenceCommentEdit(props : Props) {
       />
       <button
         className="btn btn--danger"
-        onClick={() => handleCommentDelete(comment.id)}
+        onClick={() => handleCommentDelete(obj.id)}
       >
         &times;
       </button>

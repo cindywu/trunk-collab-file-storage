@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext } from 'react'
 import { IReference } from '../interfaces'
 // import { sampleReferenceData } from '../utils/sample-data'
-import { useSubscribe } from 'replicache-react'
 
 type ReferencesContextType = {
   selectedReferenceId: string | undefined

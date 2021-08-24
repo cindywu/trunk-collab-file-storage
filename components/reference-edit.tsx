@@ -69,8 +69,15 @@ export default function ReferenceEdit({ selectedReference, setSelectedReference 
   }
 
   const handleCommentDelete = (id: string) => {
+    let obj
+
+    typeof(selectedReference.comments) === 'object' ?
+      obj  = selectedReference.comments
+      :
+      obj = JSON.parse(selectedReference.comments)
+
     handleChange({
-      comments: selectedReference.comments.filter((comment: any) => comment.id !== id)
+      comments: obj.filter((comment: any) => JSON.parse(comment).id !== id)
     })
   }
 
