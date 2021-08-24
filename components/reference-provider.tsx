@@ -76,6 +76,7 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
     if (rep != undefined) {
       rep.mutate.deleteReference({id: id})
     }
+    expandSelectedReference === true && setExpandSelectedReference(!expandSelectedReference)
   }
 
   function handleReferenceDeselect() {
