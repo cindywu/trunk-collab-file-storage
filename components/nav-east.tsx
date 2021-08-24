@@ -17,7 +17,10 @@ export default function NavEast({rep} : any) {
   )
 
   useEffect(() => {
+    selectedReferenceId ?
     findSelectedReference()
+    :
+    setSelectedReference(null)
   }, [selectedReferenceId])
 
   function findSelectedReference(){

@@ -18,7 +18,10 @@ export default function NavSouth({ rep } : any) {
   )
 
   useEffect(() => {
+    selectedReferenceId ?
     findSelectedReference()
+    :
+    setSelectedReference(null)
   }, [selectedReferenceId, references])
 
   function findSelectedReference(){
