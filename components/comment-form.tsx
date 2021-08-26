@@ -24,8 +24,14 @@ export default function CommentForm({selectedReference} : any) {
   }
 
   function handleCommentAdd() {
-    const { user } = session
-    const email = user ? user.email : 'cindy'
+    let email
+
+    if (session !== null) {
+      const { user } = session
+      email = user.email
+    } else {
+      email = 'cindy'
+    }
 
     const newComment = {
       id: uuidv4(),
