@@ -23,7 +23,11 @@ export default function Home() {
         </p>
 
       </main>
-
+      <div className={styles.secret}>
+        <Link href="/workspace">
+        <a>secret passage</a>
+        </Link>
+      </div>
       <footer className={styles.footer}>
         <a
           href="https://jellypbc.com"
