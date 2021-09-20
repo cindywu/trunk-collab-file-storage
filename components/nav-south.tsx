@@ -40,6 +40,7 @@ export default function NavSouth({ rep } : any) {
         <ReferenceView
           references={references}
           selectedReference={selectedReference}
+          setSelectedReference={setSelectedReference}
         />
       :
         <ReferenceList

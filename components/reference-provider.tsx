@@ -88,6 +88,7 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
       rep.mutate.updateReference({
         id: reference.id,
         name: reference.name,
+        source_url: reference.source_url,
         parent: reference.parent,
         date: reference.date,
         description: reference.description,
