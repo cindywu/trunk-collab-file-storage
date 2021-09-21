@@ -24,7 +24,7 @@ export default function Avatar({ url, size }: { url: string | null; size: number
 
   return avatarUrl ? (
     <div>
-      <a href={avatarUrl} target="_blank">View source file</a>
+      <a href={avatarUrl} target="_blank">🗂 Source file</a>
     </div>
   ) : (
     <div className="avatar no-image" style={{ height: size, width: size }} >

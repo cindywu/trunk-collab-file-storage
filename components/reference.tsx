@@ -26,6 +26,12 @@ export default function Reference(props : ReferenceProps ){
     handleReferenceSelect(props.id.substring(4))
   }
 
+  function truncateTitle() {
+    return reference.description.length > 80
+      ? reference.description.substring(0, 80) + '...'
+      : reference.description
+  }
+
   const emphasisStyle = {
     backgroundColor: 'hsl(210, 8%, 93%)'
   } as React.CSSProperties
@@ -40,7 +46,7 @@ export default function Reference(props : ReferenceProps ){
         <span className={styles.identifier}>{reference.name}</span>
         <span className={styles.parent}>{` › `}</span>
         <span className={`${styles.parent} mr-1`}>{reference.parent}</span>
-        <span className={styles.title}>{reference.description}</span>
+        <span className={styles.title}>{truncateTitle()}</span>
       </div>
       <div>
         <span className={`${styles.labels} mr-1`}>
