@@ -20,6 +20,7 @@ export default function ReferenceAdd({ rep }: any) {
 
     const newReference = {
       id: uuidv4(),
+      src: '',
       source_url: '',
       name: nameRef.current ? nameRef.current.value : '',
       parent: parentRef.current ? parentRef.current.value : '',

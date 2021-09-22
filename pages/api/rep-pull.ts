@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         )?.last_mutation_id ?? '0',
       );
       const changed = await db.manyOrNone(
-        'select id, source_url, name, parent, date, description, labels, comments, deleted from reference',
+        'select id, src, source_url, name, parent, date, description, labels, comments, deleted from reference',
         parseInt(pull.cookie ?? 0),
       )
       const cookie = (
@@ -51,6 +51,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 key: `ref/${row.id}`,
                 value: {
                   source_url: row.source_url,
+                  src: row.src,
                   name: row.name,
                   parent: row.parent,
                   date: row.date,
