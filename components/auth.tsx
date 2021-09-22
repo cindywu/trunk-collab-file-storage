@@ -15,7 +15,6 @@ export default function Auth() {
         redirectTo: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : null
       })
       if (error) throw error
-      console.log('user', user)
       alert('Check your email for the login link!')
     } catch (error) {
       console.log('Error thrown:', error.message)

@@ -23,8 +23,9 @@ export default function Workspace() {
         pullURL: 'api/rep-pull',
         wasmModule: '/replicache.dev.wasm',
         mutators: {
-          async createReference(tx, {id, source_url, name, parent, date, description, labels, comments}) {
+          async createReference(tx, {id, src, source_url, name, parent, date, description, labels, comments}) {
             await tx.put(`ref/${id}`, {
+              src,
               source_url,
               name,
               parent,
@@ -37,8 +38,10 @@ export default function Workspace() {
           async deleteReference(tx, {id}) {
             await tx.del(`ref/${id}`)
           },
-          async updateReference(tx, {id, source_url, name, parent, date, description, labels, comments}) {
+          async updateReference(tx, {id, src, source_url, name, parent, date, description, labels, comments}) {
+            console.log('i am in updateReference')
             await tx.put(`ref/${id}`, {
+              src,
               source_url,
               name,
               parent,

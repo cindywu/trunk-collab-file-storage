@@ -85,9 +85,11 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
 
   function handleReferenceChange(reference: IReference) {
     if (rep != undefined) {
+      console.log('herrrroooo')
       rep.mutate.updateReference({
         id: reference.id,
         name: reference.name,
+        src: reference.src,
         source_url: reference.source_url,
         parent: reference.parent,
         date: reference.date,

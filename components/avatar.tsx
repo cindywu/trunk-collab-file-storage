@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
 import { DEFAULT_AVATARS_BUCKET } from '../lib/constants'
 
-export default function Avatar({ url, size }: { url: string | null; size: number }) {
+export default function Avatar({ url, src, size }: { url: string | null; src: string | null; size: number }) {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
+  console.log('src', src)
 
   useEffect(() => {
     if (url) downloadImage(url)

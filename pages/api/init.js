@@ -8,6 +8,7 @@ export default async (_, res) => {
     // Stores chat messages
     await t.none(`CREATE TABLE reference (
       id VARCHAR(255) PRIMARY KEY NOT NULL,
+      src TEXT NOT NULL,
       source_url TEXT NOT NULL,
       name VARCHAR(255) NOT NULL,
       parent VARCHAR(255) NOT NULL,

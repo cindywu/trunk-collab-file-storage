@@ -7,12 +7,20 @@ import styles from './reference-view.module.css'
 import { v4 as uuidv4 } from 'uuid'
 import { useReferences } from './reference-provider'
 import ProfileCard from './profile-card'
+import * as base64 from 'base64-arraybuffer'
+import { Document, Page } from 'react-pdf'
 
 
 export default function ReferenceView({ references, selectedReference, setSelectedReference }: any) {
+  let blobby = new Blob([""], { type: 'application/pdf' });
   const [uploading, setUploading] = useState<boolean>(false)
   const [sourceFile, setSourceFile] = useState<string | null> (null)
   const [session, setSession] = useState(null)
+  const [src, setSrc] = useState('')
+  const [filePath, setFilePath] = useState('')
+  const [blob, setBlob] = useState<any>(blobby)
+  const [fileName, setFileName] = useState('')
+  const [filey, setFiley] = useState<any>()
   const LOCAL_STORAGE_KEY = 'supabase.auth.token'
 
   const {
@@ -21,6 +29,7 @@ export default function ReferenceView({ references, selectedReference, setSelect
 
   function handleChange(changes: object){
     const payload = {...selectedReference, ...changes}
+    console.log('payload', payload)
     selectedReference && handleReferenceChange(payload)
     setSelectedReference(payload)
   }
@@ -32,7 +41,46 @@ export default function ReferenceView({ references, selectedReference, setSelect
     )
   }, [])
 
+  useEffect(() => {
+    let payload = {source_url: filePath, src: src}
+    handleChange(payload)
+    console.log('i am in reference view useEffect, src dependent')
+  }, [src, filePath])
+
+  useEffect(() => {
+    console.log('i am in reference view useEffect, blob dependent', blob)
+    console.log('hi', toDataURL(blob).then((dataUrl) => { console.log('dataUrl', dataUrl)}))
+    function srcToFile(src, fileName, mimeType){
+      return (fetch(src)
+          .then(function(res){return res.arrayBuffer();})
+          .then(function(buf){return new File([buf], fileName, {type:mimeType});})
+      );
+    }
+    srcToFile(blob, 'hello.pdf', 'application/pdf').then(function(filey){
+      console.log('filey', filey)
+      setFiley(filey)
+    })
+  }, [blob])
+
   const DEFAULT_SOURCE_FILES_BUCKET = 'avatars'
+
+  async function readFile(file: any) {
+    const arrayBuffer = await new Promise(resolve => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result)
+      reader.readAsArrayBuffer(file)
+    })
+    return arrayBuffer
+  }
+
+  async function toDataURL(blob: any) {
+    const dataUrl = await new Promise(resolve => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result)
+      reader.readAsDataURL(blob)
+    })
+    return dataUrl
+  }
 
   async function uploadAvatar(event: ChangeEvent<HTMLInputElement>) {
     try {
@@ -41,15 +89,41 @@ export default function ReferenceView({ references, selectedReference, setSelect
       if (!event.target.files || event.target.files.length == 0) {
         throw 'You must select an image to upload.'
       }
-
-      const user = supabase.auth.user()
       const file = event.target.files[0]
+
+      console.log('file', file)
       const fileExt = file.name.split('.').pop()
       const fileName=`${session?.user.id}/${uuidv4()}.${fileExt}`
       const filePath = `${fileName}`
+      setFilePath(filePath)
 
-      let payload = {source_url: filePath}
-      handleChange(payload) // TODO: move into useEffect hook
+      readFile(file).then((arrayBuffer: ArrayBuffer) => {
+        const base64String = base64.encode(arrayBuffer)
+        setSrc(base64String)
+        const backToFile = base64.decode(base64String)
+        const dog = new Uint32Array(backToFile)
+        const newnew = new Blob([backToFile], { type: 'application/pdf' })
+        setBlob(newnew)
+        const url = window.URL.createObjectURL(newnew)
+      })
+
+      toDataURL(blob).then((dataUrl: any) => {
+        console.log('blob', blob)
+        console.log('dataUrl', dataUrl)
+      })
+
+
+
+      const user = supabase.auth.user()
+
+      const files = event.target.files
+
+      const type = file.type
+      const obj_url = window.URL.createObjectURL(file)
+
+      const arrayBuffer = new ArrayBuffer(files.length)
+      const view = new Uint8Array(arrayBuffer)
+
 
       let { error: uploadError } = await supabase.storage
         .from(DEFAULT_SOURCE_FILES_BUCKET)
@@ -101,6 +175,11 @@ export default function ReferenceView({ references, selectedReference, setSelect
                 </button>
               </div>
               <ProfileCard profile={selectedReference}/>
+              <div>
+                <Document file={window.URL.createObjectURL(blob)}>
+                  <Page pageNumber={1} />
+                </Document>
+              </div>
               <CommentList selectedReference={v}/>
               <CommentForm selectedReference={v}/>
             </div>
