@@ -34,7 +34,7 @@ export default function ReferenceView({ references, selectedReference, setSelect
 
   const DEFAULT_SOURCE_FILES_BUCKET = 'avatars'
 
-  async function uploadAvatar(event: ChangeEvent<HTMLInputElement>) {
+  async function uploadAvatar(event: ChangeEvent<HTMLInputElement>, newFileID: string) {
     try {
       setUploading(true)
 
@@ -44,8 +44,8 @@ export default function ReferenceView({ references, selectedReference, setSelect
 
       const user = supabase.auth.user()
       const file = event.target.files[0]
-      const fileExt = file.name.split('.').pop()
-      const fileName=`${session?.user.id}/${uuidv4()}.${fileExt}`
+      const fileExt = file.name.split('.').pop() //type of file, e.g. .PDF
+      const fileName=`${session?.user.id}/${newFileID}.${fileExt}`
       const filePath = `${fileName}`
 
       let payload = {source_url: filePath}
@@ -86,7 +86,6 @@ export default function ReferenceView({ references, selectedReference, setSelect
 
   function handleUploadToIDB(event:ChangeEvent<HTMLInputElement>) {
     const stuff = event
-    console.log('event', event)
     setUploadingIDB(true)
 
     if (!event.target.files || event.target.files.length == 0) {
@@ -112,8 +111,12 @@ export default function ReferenceView({ references, selectedReference, setSelect
       let tx = db.transaction(['sources'], 'readwrite')
       let store = tx.objectStore('sources')
 
+      let fileID = uuidv4()
+      let refID = selectedReference.id
+      let newFileID = `${refID}/${fileID}`
+
       let newFile = {
-        id: uuidv4(),
+        id: newFileID,
         file: file,
       }
 
@@ -124,7 +127,8 @@ export default function ReferenceView({ references, selectedReference, setSelect
       }
 
       request.onsuccess = function(event: any) {
-        uploadAvatar(stuff) // upload file to supabase
+
+        uploadAvatar(stuff, newFileID) // upload file to supabase
         setUploadingIDB(false)
       }
     }

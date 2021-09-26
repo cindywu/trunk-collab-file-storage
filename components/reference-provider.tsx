@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext } from 'react'
 import { IReference } from '../interfaces'
-// import { sampleReferenceData } from '../utils/sample-data'
 
 type ReferencesContextType = {
   selectedReferenceId: string | undefined
