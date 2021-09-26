@@ -156,14 +156,22 @@ export default function ReferenceView({ references, selectedReference, setSelect
                   />
                 </button>
               </div> */}
-              <div className={styles.buttonContainer}>
-                <button className={`${styles.subReferenceButton} btn btn-secondary`}>
-                  <UploadToIDBButton
-                    onUpload={handleUploadToIDB}
-                    loading={uploadingIDB}
-                  />
-                </button>
-              </div>
+              {session ?
+                <div className={styles.buttonContainer}>
+                  <button className={`${styles.subReferenceButton} btn btn-secondary`}>
+                    <UploadToIDBButton
+                      onUpload={handleUploadToIDB}
+                      loading={uploadingIDB}
+                    />
+                  </button>
+                </div>
+                :
+                <div className={styles.buttonContainer}>
+                  <button className={`${styles.subReferenceButtonWarning} btn btn-secondary`}>
+                  ⚠️ Only registered users can upload PDFs ⚠️
+                  </button>
+                </div>
+              }
               <ProfileCard profile={selectedReference}/>
               <CommentList selectedReference={v}/>
               <CommentForm selectedReference={v}/>
