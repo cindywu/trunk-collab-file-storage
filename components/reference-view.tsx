@@ -2,15 +2,15 @@ import React, { useState, ChangeEvent, useEffect } from 'react'
 import { supabase } from '../lib/supabaseClient'
 import CommentList from './comment-list'
 import CommentForm from './comment-form'
-import UploadButton from './upload-button'
 import styles from './reference-view.module.css'
 import { v4 as uuidv4 } from 'uuid'
 import { useReferences } from './reference-provider'
 import ProfileCard from './profile-card'
-
+import UploadToIDBButton from './upload-to-idb-button'
 
 export default function ReferenceView({ references, selectedReference, setSelectedReference }: any) {
   const [uploading, setUploading] = useState<boolean>(false)
+  const [uploadingIDB, setUploadingIDB] = useState<boolean>(false)
   const [sourceFile, setSourceFile] = useState<string | null> (null)
   const [session, setSession] = useState(null)
   const LOCAL_STORAGE_KEY = 'supabase.auth.token'
@@ -80,6 +80,62 @@ export default function ReferenceView({ references, selectedReference, setSelect
     }
   }
 
+  function idbOK() {
+    return "indexedDB" in window
+  }
+
+  function handleUploadToIDB(event:ChangeEvent<HTMLInputElement>) {
+    const stuff = event
+    console.log('event', event)
+    setUploadingIDB(true)
+
+    if (!event.target.files || event.target.files.length == 0) {
+      throw 'You must select an image to upload.'
+    }
+
+    let file = event.target.files[0]
+
+    if (!idbOK()) return
+
+    let openRequest = indexedDB.open('trunk_idb1', 1)
+
+    openRequest.onupgradeneeded = function(event: any) {
+      let thisDB = event.target.result
+
+      if (!thisDB.objectStoreNames.contains('sources')) {
+        thisDB.createObjectStore('sources', { keyPath: 'id' })
+      }
+    }
+
+    openRequest.onsuccess = function(event: any) {
+      let db = event.target.result
+      let tx = db.transaction(['sources'], 'readwrite')
+      let store = tx.objectStore('sources')
+
+      let newFile = {
+        id: uuidv4(),
+        file: file,
+      }
+
+      let request = store.add(newFile)
+
+      request.onerror = function(event: any) {
+        console.log('error', event.target.error.name)
+      }
+
+      request.onsuccess = function(event: any) {
+        uploadAvatar(stuff) // upload file to supabase
+        setUploadingIDB(false)
+      }
+    }
+
+    openRequest.onerror = function(event:any) {
+      console.dir(event)
+    }
+  }
+
+
+
   return (
     <>
       {selectedReference && references.map(([k, v] : [any, any]) => {
@@ -92,11 +148,19 @@ export default function ReferenceView({ references, selectedReference, setSelect
               {/* <div className={styles.buttonContainer}>
                 <button className={`${styles.subReferenceButton} btn btn-secondary`}>+ Add sub-references</button>
               </div> */}
-              <div className={styles.buttonContainer}>
+              {/* <div className={styles.buttonContainer}>
                 <button className={`${styles.subReferenceButton} btn btn-secondary`}>
                   <UploadButton
                     onUpload={uploadAvatar}
                     loading={uploading}
+                  />
+                </button>
+              </div> */}
+              <div className={styles.buttonContainer}>
+                <button className={`${styles.subReferenceButton} btn btn-secondary`}>
+                  <UploadToIDBButton
+                    onUpload={handleUploadToIDB}
+                    loading={uploadingIDB}
                   />
                 </button>
               </div>
