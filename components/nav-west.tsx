@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './nav-west.module.css'
 import { supabase } from '../lib/supabaseClient'
+import { Offline, Online } from 'react-detect-offline'
 
 export default function NavWest() {
   const [session, setSession] = useState(null)
@@ -33,6 +34,10 @@ export default function NavWest() {
     <div className={styles.container}>
       <div className={styles.userInfoContainer}>
         {email}
+      </div>
+      <div className={styles.userInfoContainer}>
+        <Online>You are online</Online>
+        <Offline>You are offline</Offline>
       </div>
       <div className={styles.signOutContainer}>
         <Link href="/">
