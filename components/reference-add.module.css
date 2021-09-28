@@ -39,3 +39,12 @@
 textarea.input {
   resize: none;
 }
+
+.sourceFileContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sourceFileContainer > div {
+  margin-right: 2em;
+}
