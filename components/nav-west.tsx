@@ -3,32 +3,20 @@ import Link from 'next/link'
 import styles from './nav-west.module.css'
 import { supabase } from '../lib/supabaseClient'
 import { Offline, Online } from 'react-detect-offline'
+import { useReferences } from './reference-provider'
 
 export default function NavWest() {
-  const [session, setSession] = useState(null)
+  const { session } = useReferences()
+  const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    (session !== null) ? setEmail(session.user.email) : setEmail('guest')
+  }, [session])
 
   async function signOut() {
     const { error } = await supabase.auth.signOut()
     error ? console.log('Error logging out:', error.message) : alert('You have been signed out')
   }
-  const LOCAL_STORAGE_KEY = 'supabase.auth.token'
-
-  useEffect(() => {
-    const session = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (session != null) (
-      setSession(JSON.parse(session).currentSession)
-    )
-  }, [])
-
-  let email
-
-  if (session !== null) {
-    const { user } = session
-    email = user.email
-  } else {
-    email = 'guest'
-  }
-
 
   return (
     <div className={styles.container}>

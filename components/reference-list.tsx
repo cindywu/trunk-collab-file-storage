@@ -1,9 +1,8 @@
 import React from 'react'
 import Reference from './reference'
 import styles from './reference-list.module.css'
-import type { IReference } from '../interfaces'
 
-export default function ReferenceList({ references, selectedReference }: any ) {
+export default function ReferenceList({ references, selectedReference }: any) {
   return (
     <div className={styles.container}>
       {references.map(([k, v] : any) => {

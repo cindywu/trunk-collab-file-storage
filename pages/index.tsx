@@ -5,15 +5,17 @@ import styles from '../styles/home.module.css'
 import { AuthSession } from '@supabase/supabase-js'
 import Auth from '../components/auth'
 import { supabase } from '../lib/supabaseClient'
+import { useReferences } from '../components/reference-provider'
 
 export default function Home() {
   const [session, setSession] = useState<AuthSession | null>(null)
+  const { handleSessionUpdate } = useReferences()
+  const { user } = session || {}
 
   useEffect(() => {
-    setSession(supabase.auth.session())
-
     supabase.auth.onAuthStateChange((_event: string, session: AuthSession | null) => {
       setSession(session)
+      handleSessionUpdate(session)
     })
   }, [])
 
@@ -29,7 +31,6 @@ export default function Home() {
         <h1 className={styles.title}>
           <div>Trunk</div>
         </h1>
-        {/* <code className={styles.code}>alpha</code> */}
         <p className={styles.description}>
           Literature review for high-performing teams
         </p>
@@ -37,8 +38,8 @@ export default function Home() {
           <Auth/>
         ): (
           <>
-            {session.user &&
-              <p className={styles.userEmail}>{session.user.email}</p>
+            {user &&
+              <p className={styles.userEmail}>{user.email}</p>
             }
             <Link href="/workspace">
               <button className='btn btn--secondary'>ENTER TO WORKSPACE</button>

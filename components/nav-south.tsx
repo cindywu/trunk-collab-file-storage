@@ -3,10 +3,11 @@ import ReferenceList from './reference-list'
 import ReferenceView from './reference-view'
 import { useReferences } from './reference-provider'
 import { useSubscribe } from 'replicache-react'
+import type { IReference } from '../interfaces'
 
 export default function NavSouth({ rep } : any) {
   const { selectedReferenceId, expandSelectedReference } = useReferences()
-  const [selectedReference, setSelectedReference] = useState<any>()
+  const [selectedReference, setSelectedReference] = useState<IReference>()
 
   const references = useSubscribe(
     rep,
@@ -25,7 +26,7 @@ export default function NavSouth({ rep } : any) {
   }, [selectedReferenceId, references])
 
   function findSelectedReference(){
-    references.map(([k, v]) => {
+    references.map(([k, v]: [string, IReference]) => {
       if (k.substring(4) === selectedReferenceId) {
         const payload = v
         Object.assign(payload, {id: k.substring(4)})

@@ -1,5 +1,6 @@
 import React, { useState, createContext, useContext } from 'react'
 import { IReference } from '../interfaces'
+import { AuthSession } from '@supabase/supabase-js'
 
 type ReferencesContextType = {
   selectedReferenceId: string | undefined
@@ -13,6 +14,8 @@ type ReferencesContextType = {
   handleShowReferenceAdd: () => void
   handleReferenceExpandChange: () => void
   handleSetRep: (rep: any) => void
+  handleSessionUpdate: (session: AuthSession) => void
+  session: AuthSession
 }
 
 const defaultContextValue = {
@@ -26,7 +29,9 @@ const defaultContextValue = {
   handleReferenceChange: (reference: IReference) => {},
   handleShowReferenceAdd: () => {},
   handleReferenceExpandChange: () => {},
-  handleSetRep: (rep: any) => {}
+  handleSetRep: (rep: any) => {},
+  handleSessionUpdate: (session: AuthSession) => {},
+  session: null
 }
 
 export const ReferencesContext = createContext<ReferencesContextType>(defaultContextValue)
@@ -40,6 +45,7 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
   const [selectedReferenceId, setSelectedReferenceId] = useState<string | undefined>()
   const [expandSelectedReference, setExpandSelectedReference] = useState<boolean>(false)
   const [rep, setRep] = useState<any>()
+  const [session, setSession] = useState(null)
 
   const referencesContextValue = {
     selectedReferenceId,
@@ -53,6 +59,12 @@ export const ReferenceProvider = ({ children } : ReferenceProviderProps) => {
     handleShowReferenceAdd,
     handleReferenceExpandChange,
     handleSetRep,
+    handleSessionUpdate,
+    session
+  }
+
+  function handleSessionUpdate(session: AuthSession){
+    setSession(session)
   }
 
   function handleReferenceSelect(id: string){

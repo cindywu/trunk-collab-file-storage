@@ -7,16 +7,16 @@ import { v4 as uuidv4 } from 'uuid'
 import { useReferences } from './reference-provider'
 import ProfileCard from './profile-card'
 import UploadToIDBButton from './upload-to-idb-button'
+import { idbOK } from '../utils'
 
 export default function ReferenceView({ references, selectedReference, setSelectedReference }: any) {
   const [uploading, setUploading] = useState<boolean>(false)
   const [uploadingIDB, setUploadingIDB] = useState<boolean>(false)
   const [sourceFile, setSourceFile] = useState<string | null> (null)
-  const [session, setSession] = useState(null)
-  const LOCAL_STORAGE_KEY = 'supabase.auth.token'
 
   const {
     handleReferenceChange,
+    session,
   } = useReferences()
 
   function handleChange(changes: object){
@@ -24,13 +24,6 @@ export default function ReferenceView({ references, selectedReference, setSelect
     selectedReference && handleReferenceChange(payload)
     setSelectedReference(payload)
   }
-
-  useEffect(() => {
-    const session = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (session != null) (
-      setSession(JSON.parse(session).currentSession)
-    )
-  }, [])
 
   const DEFAULT_SOURCE_FILES_BUCKET = 'avatars'
 
@@ -73,15 +66,9 @@ export default function ReferenceView({ references, selectedReference, setSelect
 
     } catch (error) {
       alert(error.message)
-
     } finally {
       setUploading(false)
-
     }
-  }
-
-  function idbOK() {
-    return "indexedDB" in window
   }
 
   function handleUploadToIDB(event:ChangeEvent<HTMLInputElement>) {
